@@ -1,2 +1,2 @@
 # PixelChat
-Atmospheric chat in retro style
+Atmospheric chat in retro style (PyQt + socket + thread)

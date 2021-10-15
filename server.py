@@ -35,7 +35,6 @@ def threaded(c, addr):
             print('Соединение с ' + str(addr) + ' разорвано')
 
             data = sockets[str(addr)][1]
-            print(data)
             send_data = {'nick': 'server',
                          'color': 'yellow',
                          'message': data["nick"] + ' disconnected'}
@@ -68,8 +67,8 @@ def threaded(c, addr):
     c.close()
 
 
-host = "localhost"
-port = 666
+host = "192.168.43.139"
+port = 80
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

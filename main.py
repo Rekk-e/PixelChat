@@ -16,7 +16,7 @@ class Thread(QtCore.QThread):
         self.mainwindow = MyWin
 
     def run(self):
-        soc.connect(('localhost', 666))
+        soc.connect(('192.168.43.139', 80))
         senddata = {
             'nick':self.mainwindow.nick,
              'color':'yellow',
@@ -26,11 +26,15 @@ class Thread(QtCore.QThread):
         soc.send(bytes(json.dumps(senddata), 'utf-8'))
         data = soc.recv(1024).decode('utf-8')
         data = json.loads(data)
-        self.mainwindow.ui.textEdit.append('<font color =' + data["color"] + '>' + data["nick"] + " >>> " + data["message"] + '<\\font>')
+        self.mainwindow.ui.textEdit.append('<font color =' + data["color"] + '>' +
+                                                             data["nick"] + '</font>' + "<font color = '#8E87AC'> >>> </font>" +
+                                                             data["message"])
         while True:
             data = soc.recv(1024).decode('utf-8')
             data = json.loads(data)
-            self.mainwindow.ui.textEdit.append('<font color =' + data["color"] +'>' + data["nick"] + " >>> " + data["message"] + '<\\font>')
+            self.mainwindow.ui.textEdit.append('<font color =' + data["color"] +'>' +
+                                                                 data["nick"] + '</font>' + "<font color = '#8E87AC'> >>> </font>" +
+                                                                 data["message"])
 
 
 
@@ -71,9 +75,14 @@ class MyWin(QtWidgets.QWidget):
 
             data = json.dumps(self.user_settings)
             soc.send(bytes(data, 'utf-8'))
-            self.ui.textEdit.append('<font color =' + self.user_settings["color"] +'>' +
-                                    self.user_settings["nick"] + " >>> " +
-                                    self.user_settings["message"] + '<\\font>')
+            text = self.ui.textEdit_2.toPlainText()
+            if text != '/smile' and text != '/angry' and text != '/shock' and text != '/help':
+                self.ui.textEdit.append('<font color =' +
+                self.user_settings["color"] +'>' +
+                self.user_settings["nick"] + '</font>' +
+                "<font color = '#8E87AC'> >>> </font>" +
+                self.user_settings["message"])
+
         else:
             self.ui.textEdit.clear()
         self.ui.textEdit_2.clear()

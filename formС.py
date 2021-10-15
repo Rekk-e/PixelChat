@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'auth.ui'
+## Form generated from reading UI file 'form.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -14,69 +14,69 @@ from PySide2.QtWidgets import *
 import sys
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(400, 352)
-        Form.setStyleSheet(u"background-color: rgb(0, 0, 0)")
-        self.label = QLabel(Form)
+class Ui_ChatUi(object):
+    def setupUi(self, ChatUi):
+        if not ChatUi.objectName():
+            ChatUi.setObjectName(u"PixelChat")
+        ChatUi.resize(441, 538)
+        self.label = QLabel(ChatUi)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(40, 30, 341, 51))
+        self.label.setGeometry(QRect(0, 0, 441, 541))
+        self.label.setStyleSheet(u"background-color: rgb(0, 0, 0);")
+        self.label_2 = QLabel(ChatUi)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(140, 10, 361, 61))
         font = QFont()
         font.setFamily(u"MS Serif")
-        font.setPointSize(21)
-        self.label.setFont(font)
-        self.label.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.lineEdit = QLineEdit(Form)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(50, 150, 301, 41))
+        font.setPointSize(26)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.textEdit = QTextEdit(ChatUi)
+        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setGeometry(QRect(40, 80, 361, 371))
         font1 = QFont()
         font1.setFamily(u"MS Serif")
         font1.setPointSize(12)
-        self.lineEdit.setFont(font1)
-        self.lineEdit.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.label_2 = QLabel(Form)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(160, 120, 101, 21))
+        self.textEdit.setFont(font1)
+        self.textEdit.setStyleSheet(u"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"border-color: rgb(0, 170, 0);")
+        self.textEdit.setFrameShape(QFrame.StyledPanel)
+        self.textEdit.setReadOnly(True)
+        self.pushButton = QPushButton(ChatUi)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(300, 460, 101, 51))
         font2 = QFont()
         font2.setFamily(u"MS Serif")
-        font2.setPointSize(13)
-        self.label_2.setFont(font2)
-        self.label_2.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.pushButton = QPushButton(Form)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(140, 290, 121, 41))
-        font3 = QFont()
-        font3.setFamily(u"MS Serif")
-        font3.setPointSize(16)
-        self.pushButton.setFont(font3)
+        font2.setPointSize(14)
+        self.pushButton.setFont(font2)
+        self.pushButton.setAutoFillBackground(False)
         self.pushButton.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(0,0,0, 0));\n"
 "color: rgb(255, 255, 255);")
-        self.label_3 = QLabel(Form)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(180, 200, 51, 21))
-        self.label_3.setFont(font2)
-        self.label_3.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.lineEdit_2 = QLineEdit(Form)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setGeometry(QRect(50, 230, 301, 41))
-        self.lineEdit_2.setFont(font1)
-        self.lineEdit_2.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.textEdit_2 = QTextEdit(ChatUi)
+        self.textEdit_2.setObjectName(u"textEdit_2")
+        self.textEdit_2.setGeometry(QRect(40, 460, 251, 51))
+        self.textEdit_2.setFont(font1)
+        self.textEdit_2.setStyleSheet(u"border-color: rgb(0, 170, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 0);")
 
-        self.retranslateUi(Form)
+        self.retranslateUi(ChatUi)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(ChatUi)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"Welcome to Pixel Chat", None))
-        self.lineEdit.setText("")
-        self.label_2.setText(QCoreApplication.translate("Form", u"Nickname", None))
-        self.pushButton.setText(QCoreApplication.translate("Form", u"Connect", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"Color", None))
-        self.lineEdit_2.setText("")
+    def retranslateUi(self, ChatUi):
+        ChatUi.setWindowTitle(QCoreApplication.translate("PixelChat", u"PixelChat", None))
+
+        self.label.setText("")
+        self.label_2.setText(QCoreApplication.translate("ChatUi", u"PixelChat", None))
+        self.textEdit.setHtml(QCoreApplication.translate("ChatUi", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Serif'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.pushButton.setText(QCoreApplication.translate("ChatUi", u"SEND", None))
     # retranslateUi
 
 if __name__ == "__main__":
@@ -87,7 +87,7 @@ TitleBar {
     background-color: rgb(54, 157, 180);
 }""")
     Form = QWidget()
-    ui = Ui_Form()
+    ui = Ui_ChatUi()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

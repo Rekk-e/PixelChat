@@ -1,7 +1,22 @@
 import socket, json
+import os
+import time
 from _thread import start_new_thread
-
+from pyngrok import ngrok
 global sockets
+
+def disconnect(addr):
+    print('Соединение с ' + str(addr) + ' разорвано')
+
+    data = sockets[str(addr)][1]
+    send_data = {'nick': 'server',
+                 'color': 'yellow',
+                 'message': data["nick"] + ' disconnected'}
+    send_data = json.dumps(send_data)
+    sockets.pop(str(addr))
+
+    for soc in sockets:
+        sockets[soc][0].send(bytes(send_data, 'utf-8'))
 
 
 def sendSmile(data, addr, mess):
@@ -32,48 +47,39 @@ def threaded(c, addr):
             data = c.recv(1024)
             print(data)
         except ConnectionResetError:
-            print('Соединение с ' + str(addr) + ' разорвано')
-
-            data = sockets[str(addr)][1]
-            send_data = {'nick': 'server',
-                         'color': 'yellow',
-                         'message': data["nick"] + ' disconnected'}
-            send_data = json.dumps(send_data)
-            sockets.pop(str(addr))
-
-            for soc in sockets:
-                sockets[soc][0].send(bytes(send_data, 'utf-8'))
+            disconnect(addr)
             break
 
-        if not data:
-            print('Bye')
-            break
-
-        jData = data.decode('utf-8')
-        jData = json.loads(jData)
-        if jData["message"] == '/smile':
-            mess = '😆😆😆'
-            sendSmile(jData, addr, mess)
-        elif jData["message"] == '/angry':
-            mess = '😡😡😡'
-            sendSmile(jData, addr, mess)
-        elif jData["message"] == '/shock':
-            mess = '😱😱😱'
-            sendSmile(jData, addr, mess)
-        elif jData["message"] == '/help':
-            sendHelp(addr)
+        if data:
+            jData = data.decode('utf-8')
+            jData = json.loads(jData)
+            if jData["message"] == '/smile':
+                mess = '😆😆😆'
+                sendSmile(jData, addr, mess)
+            elif jData["message"] == '/angry':
+                mess = '😡😡😡'
+                sendSmile(jData, addr, mess)
+            elif jData["message"] == '/shock':
+                mess = '😱😱😱'
+                sendSmile(jData, addr, mess)
+            elif jData["message"] == '/help':
+                sendHelp(addr)
+            else:
+                sendToClient(data, addr)
         else:
-            sendToClient(data, addr)
+            print('Пришла пустая строка')
+            time.sleep(5)
     c.close()
 
-
-host = "192.168.43.139"
-port = 80
+host = ''
+port = 22
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind((host, port))
 s.listen(1000)
+
+
+
 sockets = {}
 while True:
     sock, addr = s.accept()

@@ -1,14 +1,13 @@
 import json
-import time
-
+import os
 from PySide2 import QtCore, QtGui, QtWidgets
 import sys
 from formС import Ui_ChatUi
-from auth import Ui_Form
+from authform import Ui_Form
 import socket
+from PySide2.QtCore import QPluginLoader
 
-soc = socket.socket()
-
+soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 class Thread(QtCore.QThread):
     def __init__(self, MyWin, parent=None):
@@ -16,7 +15,10 @@ class Thread(QtCore.QThread):
         self.mainwindow = MyWin
 
     def run(self):
-        soc.connect(('192.168.43.139', 80))
+        addr = self.mainwindow.address.split(':')
+        host = addr[0]
+        port = int(addr[1])
+        soc.connect((host, port))
         senddata = {
             'nick':self.mainwindow.nick,
              'color':'yellow',
@@ -41,6 +43,7 @@ class Thread(QtCore.QThread):
 class AuthForm(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(AuthForm, self).__init__(parent)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.connect)
@@ -49,6 +52,7 @@ class AuthForm(QtWidgets.QMainWindow):
         self.Form = MyWin()
         self.Form.nick = self.ui.lineEdit.text()
         self.Form.color = self.ui.lineEdit_2.text()
+        self.Form.address = self.ui.lineEdit_3.text()
         self.Form.show()
         self.close()
 
@@ -56,6 +60,7 @@ class AuthForm(QtWidgets.QMainWindow):
 class MyWin(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(MyWin, self).__init__(parent)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
         self.ui = Ui_ChatUi()
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.send)

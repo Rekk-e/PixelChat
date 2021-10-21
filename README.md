@@ -4,6 +4,6 @@
 # Screenshots
 
 ## Authentication
-![image](https://user-images.githubusercontent.com/58889568/137356111-77cc96dd-b54c-4293-a9dc-71271ef173da.png)
+![image](https://user-images.githubusercontent.com/58889568/138270316-dfa69fa3-8a2f-4b1c-8bdd-fb1c1f0cafa1.png)
 ## Chat
-![image](https://user-images.githubusercontent.com/58889568/137356372-ba85ae13-2852-4875-8cc5-3cf9a2c18816.png)
+![image](https://user-images.githubusercontent.com/58889568/138270465-863e0a98-0078-49ec-95f3-a04658c92754.png)
